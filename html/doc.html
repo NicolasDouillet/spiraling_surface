@@ -1,0 +1,166 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>spiraling_suface</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-10-14"><meta name="DC.source" content="doc.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>spiraling_suface</h1><!--introduction--><p>Function to compute, display, and save a meshed spiraling surface.</p><p>Author &amp; support : nicolas.douillet (at) free.fr, 2008-2020.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">See also</a></li><li><a href="#4">Input arguments</a></li><li><a href="#5">Output arguments</a></li><li><a href="#6">Example #1</a></li><li><a href="#7">Example #2</a></li><li><a href="#8">Example #3</a></li></ul></div><h2 id="1">Syntax</h2><p>spiraling_suface(spiralid);</p><p>spiraling_suface(spiralid, param);</p><p>spiraling_suface(spiralid, param, grid);</p><p>spiraling_suface(spiralid, param, grid, option_display);</p><p>[V, T] = spiraling_suface(spiralid, param, grid, option_display);</p><h2 id="2">Description</h2><p>spiraling_suface(spiralid) computes and displays the logarithmic spiraling surface with default parameter set on the default grid.</p><p>spiraling_suface(spiralid, param) uses param for the spiral parameter vector.</p><p>spiraling_suface(spiralid, param, grid) uses grid for the spiral support grid vector.</p><p>spiraling_suface(spiralid, param, grid, option_display) displays it when option_display is set to logical *true/1 (default), and doesn't when it is set to  logical false/0.</p><p>[V, T] = spiraling_suface(spiralid, param, grid, option_display) stores the resulting vertices coordinates in the array V, and the corresponding triplet indices list in the array T.</p><h2 id="3">See also</h2><p><a href="https://fr.mathworks.com/matlabcentral/fileexchange/75109-galaxy-model">galaxy_model</a></p><h2 id="4">Input arguments</h2><p>- <b>spiralid</b> : integer scalar double ine the range <tt>[1; 9]</tt>, the spiral identification number.</p><div><ol><li>: logarithmic spiral</li><li>: Archimede spiral</li><li>: Exponential / Fermat spiral</li><li>: power function spiral</li><li>: gamma function spiral</li><li>: Inverse Archimede spiral</li><li>: Inverse logarithmic spiral</li><li>: Inverse exponential spiral</li><li>: Inverse gamma spiral</li></ol></div><p>- <b>grid</b> = [xmin, xmax, ymin, ymax, resolution_X, resolution_Y], real vector double, the spiral grid support parameters. numel(grid) = 6.</p><p>- <b>param</b> = [amplitude, way, curv_coeff, shift, pow_coeff, nb_arms, phi_origin], real vector double, the spiral parameters. numel(param) = 7.</p><p>- <b>option_display</b> : either logical *true/false or numeric *1/0.</p><h2 id="5">Output arguments</h2><pre>      [ |  |  |]
+- V = [Vx Vy Vz], real matrix double, the vertex coordinates. Size(V) = [nb_vertices,3].
+      [ |  |  |]</pre><pre>      [ |  |  |]
+- T = [T1 T2 T3], positive integer matrix double, the triangulation. Size(T) = [nb_triangles,3].
+      [ |  |  |]</pre><h2 id="6">Example #1</h2><p>Computes and displays the log spiraling surface with default parameters on the default grid.</p><pre class="codeinput">spiraling_suface;
+</pre><img vspace="5" hspace="5" src="doc_01.png" alt=""> <h2 id="7">Example #2</h2><p>Computes and display the Archimede spiraling surface with customized parameters, on the default grid.</p><pre class="codeinput">param = [1, 1, 0.5, 0, 0, 1, 0.5]; <span class="comment">% = [amplitude, way, curv_coeff, shift, power_coeff, nb_arms, phi_origin]</span>
+spiraling_suface(2,param);
+</pre><img vspace="5" hspace="5" src="doc_02.png" alt=""> <h2 id="8">Example #3</h2><p>Computes and display the square root spiraling surface with customized spiral and grid parameters.</p><pre class="codeinput">param = [1, 1, 16, 0, 0.5, 2 0];
+grid = [-45 45 -80 80 0.5 0.5]; <span class="comment">% = [xmin, xmax, ymin, ymax, resolution_X, resolution_Y]</span>
+spiraling_suface(4,param,grid);
+</pre><img vspace="5" hspace="5" src="doc_03.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% spiraling_suface
+%
+% Function to compute, display, and save a meshed spiraling surface.
+%
+% Author & support : nicolas.douillet (at) free.fr, 2008-2020.
+%
+%% Syntax
+% spiraling_suface(spiralid);
+%
+% spiraling_suface(spiralid, param);
+%
+% spiraling_suface(spiralid, param, grid);
+%
+% spiraling_suface(spiralid, param, grid, option_display);
+%
+% [V, T] = spiraling_suface(spiralid, param, grid, option_display);
+%
+%% Description
+%
+% spiraling_suface(spiralid) computes and displays the logarithmic
+% spiraling surface with default parameter set on the default grid.
+%
+% spiraling_suface(spiralid, param) uses param for the spiral parameter vector.   
+%
+% spiraling_suface(spiralid, param, grid) uses grid for the spiral support grid vector.
+%
+% spiraling_suface(spiralid, param, grid, option_display) displays it when
+% option_display is set to logical *true/1 (default), and doesn't
+% when it is set to  logical false/0.
+%
+% [V, T] = spiraling_suface(spiralid, param, grid, option_display) stores the resulting
+% vertices coordinates in the array V, and the corresponding triplet indices list in the array T. 
+%
+%% See also
+%
+% <https://fr.mathworks.com/matlabcentral/fileexchange/75109-galaxy-model galaxy_model>
+%
+%% Input arguments
+%
+% - *spiralid* : integer scalar double ine the range |[1; 9]|, the spiral identification number.
+%
+% # : logarithmic spiral
+% # : Archimede spiral
+% # : Exponential / Fermat spiral
+% # : power function spiral
+% # : gamma function spiral
+% # : Inverse Archimede spiral
+% # : Inverse logarithmic spiral
+% # : Inverse exponential spiral
+% # : Inverse gamma spiral
+%
+% - *grid* = [xmin, xmax, ymin, ymax, resolution_X, resolution_Y], real vector double, the spiral grid support parameters. numel(grid) = 6.
+%
+% - *param* = [amplitude, way, curv_coeff, shift, pow_coeff, nb_arms, phi_origin], real vector double, the spiral parameters. numel(param) = 7.
+%
+% - *option_display* : either logical *true/false or numeric *1/0.
+%
+%% Output arguments
+%
+%        [ |  |  |]
+% - V = [Vx Vy Vz], real matrix double, the vertex coordinates. Size(V) = [nb_vertices,3].
+%        [ |  |  |]
+%
+%        [ |  |  |]
+% - T = [T1 T2 T3], positive integer matrix double, the triangulation. Size(T) = [nb_triangles,3].
+%        [ |  |  |]
+%
+%% Example #1
+% Computes and displays the log spiraling
+% surface with default parameters on the default grid.
+spiraling_suface;
+
+%% Example #2
+% Computes and display the Archimede spiraling
+% surface with customized parameters, on the default grid.
+param = [1, 1, 0.5, 0, 0, 1, 0.5]; % = [amplitude, way, curv_coeff, shift, power_coeff, nb_arms, phi_origin]
+spiraling_suface(2,param);
+
+%% Example #3
+% Computes and display the square root spiraling
+% surface with customized spiral and grid parameters.
+param = [1, 1, 16, 0, 0.5, 2 0];
+grid = [-45 45 -80 80 0.5 0.5]; % = [xmin, xmax, ymin, ymax, resolution_X, resolution_Y]
+spiraling_suface(4,param,grid);
+##### SOURCE END #####
+--></body></html>
