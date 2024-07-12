@@ -1,38 +1,38 @@
-function [V, T] = spiraling_suface(spiralid, param, grid, option_display)
-%% spiraling_suface : function to compute, display, and save a meshed spiraling surface.
+function [V, T] = spiraling_surface(spiralid, param, grid, option_display)
+%% spiraling_surface : function to compute, display, and save a meshed spiraling surface.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2008-2020.
+% Author : nicolas.douillet (at) free.fr, 2008-2024.
 %
 %
 % Syntax
 %
-% spiraling_suface(spiralid);
-% spiraling_suface(spiralid, param);
-% spiraling_suface(spiralid, param, grid);
-% spiraling_suface(spiralid, param, grid, option_display);
-% [V, T] = spiraling_suface(spiralid, param, grid, option_display);
+% spiraling_surface(spiralid);
+% spiraling_surface(spiralid, param);
+% spiraling_surface(spiralid, param, grid);
+% spiraling_surface(spiralid, param, grid, option_display);
+% [V, T] = spiraling_surface(spiralid, param, grid, option_display);
 %
 %
 % Description
 %
-% spiraling_suface(spiralid) computes and displays the logarithmic
+% spiraling_surface(spiralid) computes and displays the logarithmic
 % spiraling surface with default parameter set on the default grid.
 %
-% spiraling_suface(spiralid, param) uses param for the spiral parameter vector.   
+% spiraling_surface(spiralid, param) uses param for the spiral parameter vector.   
 %
-% spiraling_suface(spiralid, param, grid) uses grid for the spiral support grid vector.
+% spiraling_surface(spiralid, param, grid) uses grid for the spiral support grid vector.
 %
-% spiraling_suface(spiralid, param, grid, option_display) displays it when
+% spiraling_surface(spiralid, param, grid, option_display) displays it when
 % option_display is set to logical *true/1 (default), and doesn't
 % when it is set to  logical false/0.
 %
-% [V, T] = spiraling_suface(spiralid, param, grid, option_display) stores the resulting
+% [V, T] = spiraling_surface(spiralid, param, grid, option_display) stores the resulting
 % vertices coordinates in the array V, and the corresponding triplet indices list in the array T. 
 %
 %
 % Input arguments
 %
-% - spiralid : integer scalar double ine the range |[1; 9]|, the spiral identification number.
+% - spiralid : integer scalar double in the range |[1; 9]|, the spiral identification number.
 %
 % 1 : logarithmic spiral
 % 2 : Archimede spiral
@@ -64,18 +64,18 @@ function [V, T] = spiraling_suface(spiralid, param, grid, option_display)
 %
 % Example #1 : computes and displays the log spiraling
 % surface with default parameters on the default grid.
-% spiraling_suface;
+% spiraling_surface;
 %
 % Example #2 : computes and display the Archimede spiraling
 % surface with customized parameters, on the default grid.
 % param = [1, 1, 0.5, 0, 0, 1, 0.5]; % = [amplitude, way, curv_coeff, shift, power_coeff, nb_arms, phi_origin]
-% spiraling_suface(2,param);
+% spiraling_surface(2,param);
 %
 % Example #3 : computes and display the square root spiraling
 % surface with customized spiral and grid parameters.
 % param = [1, 1, 16, 0, 0.5, 2 0];
 % grid = [-45 45 -80 80 0.5 0.5]; % = [xmin, xmax, ymin, ymax, resolution_X, resolution_Y]
-% spiraling_suface(4,param,grid);
+% spiraling_surface(4,param,grid);
 
 
 %% Input parsing
@@ -141,7 +141,7 @@ if nargin < 4
                 
     end
     
-    [y,x] = meshgrid(ymin:resolution_X:ymax,xmin:resolution_Y:xmax);
+    [y,x] = meshgrid(ymin:resolution_Y:ymax,xmin:resolution_X:xmax);
     
 else
     
@@ -168,7 +168,7 @@ if option_display
 end
 
 
-end % spiraling_suface
+end % spiraling_surface
 
 
 %% compute_spiral subfunction
@@ -260,7 +260,7 @@ f0 = [0 0 0];
 f1 = [1 1 1];
 
 h = figure(1);
-set(h,'Position',get(0,'ScreenSize'));
+% set(h,'Position',get(0,'ScreenSize'));
 
 trimesh(T,V(:,1),V(:,2),V(:,3));
 
